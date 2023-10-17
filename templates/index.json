@@ -1,0 +1,315 @@
+{
+  "sections": {
+    "slideshow-split": {
+      "type": "slideshow-split",
+      "blocks": {
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "top_subheading": "",
+            "title": "Discover",
+            "title_size": 40,
+            "subheading": "our curated wool collection - contemporary textures, soft and cozy - you won't be able to stop knitting or crocheting",
+            "link": "shopify:\/\/collections\/wool",
+            "link_text": "To the Wool",
+            "link_2": "shopify:\/\/collections\/wool",
+            "link_text_2": "",
+            "text_position": "right",
+            "image": "shopify:\/\/shop_images\/Bernat_Home_Decor-41.jpg",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        },
+        "c4bf27fa-17b6-4f53-a974-d20f6fcacb24": {
+          "type": "slide",
+          "settings": {
+            "top_subheading": "",
+            "title": "Buy more -         \npay less",
+            "title_size": 40,
+            "subheading": "Get nice discounts by buying yarn bundles",
+            "link": "shopify:\/\/collections\/bundles",
+            "link_text": "Savings sets",
+            "link_2": "",
+            "link_text_2": "",
+            "text_position": "left",
+            "image": "shopify:\/\/shop_images\/Bernat_Home_Decor-40.jpg",
+            "indent_image": false,
+            "color_scheme": "3"
+          }
+        }
+      },
+      "block_order": [
+        "slide-1",
+        "c4bf27fa-17b6-4f53-a974-d20f6fcacb24"
+      ],
+      "settings": {
+        "full_width": false,
+        "height": 630,
+        "height_mobile": 430,
+        "style": "arrows",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "lazyload_images": true
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "featured-collections-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "wool",
+            "title": "The Wool"
+          }
+        },
+        "featured-collections-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "raffia",
+            "title": ""
+          }
+        },
+        "featured-collections-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "unicord",
+            "title": ""
+          }
+        },
+        "featured-collections-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "t-shirt-yarn",
+            "title": ""
+          }
+        },
+        "featured-collections-4": {
+          "type": "collection",
+          "settings": {
+            "collection": "accessories",
+            "title": ""
+          }
+        },
+        "featured-collections-5": {
+          "type": "collection",
+          "settings": {
+            "collection": "home-decor-baskets",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured-collections-0",
+        "featured-collections-1",
+        "featured-collections-2",
+        "featured-collections-3",
+        "featured-collections-4",
+        "featured-collections-5"
+      ],
+      "settings": {
+        "title": "Popular categories",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "divider": false
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection - The Wool",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "home_featured_products": "wool",
+        "count": 5,
+        "products_per_row": 5,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "418517ef-63c9-4e25-8ae8-e47f26a6adcb": {
+      "type": "promo-grid",
+      "blocks": {
+        "template--17990098354442__418517ef-63c9-4e25-8ae8-e47f26a6adcb-advanced-1": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "",
+            "heading": "Time to snuggle up...",
+            "textarea": "...with your \"Sweetheart\"",
+            "cta_text1": "Shop this",
+            "cta_link1": "shopify:\/\/collections\/sweetheart",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/Bernat_Home_Decor-46.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 500,
+            "text_align": "vertical-bottom horizontal-center",
+            "color_accent": "#f4f4f4"
+          }
+        },
+        "template--17990098354442__418517ef-63c9-4e25-8ae8-e47f26a6adcb-advanced-2": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "",
+            "heading": "New In: Raffia",
+            "textarea": "for making trendy accessories",
+            "cta_text1": "Shop This",
+            "cta_link1": "shopify:\/\/collections\/raffia",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify:\/\/shop_images\/Bernat_Home_Decor-36.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 500,
+            "text_align": "vertical-bottom horizontal-center",
+            "color_accent": "#f4f4f4"
+          }
+        }
+      },
+      "block_order": [
+        "template--17990098354442__418517ef-63c9-4e25-8ae8-e47f26a6adcb-advanced-1",
+        "template--17990098354442__418517ef-63c9-4e25-8ae8-e47f26a6adcb-advanced-2"
+      ],
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": true,
+        "space_below": true,
+        "lazyload_images": true
+      }
+    },
+    "featured-collection2": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Collection - Raffia",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "home_featured_products": "raffia",
+        "count": 5,
+        "products_per_row": 5,
+        "mobile_scrollable": false,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "featured-collection3": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Chainette yarn",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "home_featured_products": "unicord",
+        "count": 5,
+        "products_per_row": 5,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "09b722e4-8b9c-4f35-a427-471dd4197fad": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Zubehoer-19.jpg",
+        "image_mask": "none",
+        "image2": "shopify:\/\/shop_images\/Crochet_bag-3.jpg",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "Accessories",
+        "heading_size": "h2",
+        "text": "<p>Give a special charm to your handmade purse by adding a metal chain<\/p>",
+        "button_label": "Shop",
+        "button_link": "shopify:\/\/collections\/accessories",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "right",
+        "color_scheme": "3",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "f95daaa3-58bc-4b3f-bc7a-83e13dd22bda": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Textile Yarn",
+        "heading_size": "h3",
+        "heading_position": "left",
+        "home_featured_products": "t-shirt-yarn",
+        "count": 5,
+        "products_per_row": 5,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    },
+    "text-columns": {
+      "type": "text-columns",
+      "blocks": {
+        "block-1": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/The_wool-4.jpg",
+            "image_mask": "none",
+            "image_width": 650,
+            "title": "Your Honey is here",
+            "text": "<p>Be aware: your project is finished in no time with this bulky & cuddly yarn! <\/p>",
+            "button_label": "To the Honey",
+            "button_link": "shopify:\/\/collections\/honey"
+          }
+        },
+        "block-2": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/Raffia.jpg",
+            "image_mask": "none",
+            "image_width": 650,
+            "title": "Opening Sale",
+            "text": "<p>Up to 20% opening discount on selected items in the first 2 weeks<\/p>",
+            "button_label": "Save",
+            "button_link": "shopify:\/\/collections\/honey"
+          }
+        },
+        "block-3": {
+          "type": "text_block",
+          "settings": {
+            "enable_image": true,
+            "image": "shopify:\/\/shop_images\/crochet_bag-5.jpg",
+            "image_mask": "none",
+            "image_width": 650,
+            "title": "Chainette yarn",
+            "text": "<p>is specially optimized for making trendy crochet handbags<\/p>",
+            "button_label": "Shop this",
+            "button_link": "shopify:\/\/collections\/unicord"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "block-3"
+      ],
+      "settings": {
+        "title": "",
+        "align_text": "left",
+        "divider": false,
+        "color_scheme": "none"
+      }
+    }
+  },
+  "order": [
+    "slideshow-split",
+    "featured-collections",
+    "featured-collection",
+    "418517ef-63c9-4e25-8ae8-e47f26a6adcb",
+    "featured-collection2",
+    "featured-collection3",
+    "09b722e4-8b9c-4f35-a427-471dd4197fad",
+    "f95daaa3-58bc-4b3f-bc7a-83e13dd22bda",
+    "text-columns"
+  ]
+}

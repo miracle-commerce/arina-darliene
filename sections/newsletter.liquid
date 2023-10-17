@@ -1,0 +1,473 @@
+{%- if section.settings.divider -%}<div class="section--divider">{%- endif -%}
+
+{% style %}
+  {% if section.settings.top_padding == false %}
+    .newsletter-{{ section.id }} .newsletter-section { padding-top: 0 !important; }
+  {% endif %}
+  {% if section.settings.bottom_padding == false %}
+    .newsletter-{{ section.id }} .newsletter-section { padding-bottom: 0 !important; }
+  {% endif %}
+{% endstyle %}
+
+<div class="index-section newsletter-container newsletter-{{ section.id }} color-scheme-{{ section.settings.color_scheme }}">
+  {%- if section.settings.color_scheme and section.settings.color_scheme != 'none' -%}
+    {%- render 'color-scheme-texture', color_scheme: section.settings.color_scheme -%}
+  {%- endif -%}
+
+  <div class="page-width text-{{ section.settings.align_text }}">
+    <div class="newsletter-section newsletter-section--image-{{ section.settings.image_position }} {% unless section.settings.image != blank %}newsletter-section--no-image{% endunless %}">
+      <div class="newsletter-section__content">
+        {%- for block in section.blocks -%}
+          <div class="theme-block" {{ block.shopify_attributes }}>
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+              {%- when 'title' -%}
+                {%- if block.settings.title != blank -%}
+                  <p class="{% if block.settings.heading_size != blank %}{{ block.settings.heading_size }}{% else %}h2{% endif %}">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+              {%- when 'text' -%}
+                {%- if block.settings.text != blank -%}
+                  <div class="rte">
+                    <div class="enlarge-text">
+                      {{ block.settings.text }}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- when 'form' -%}
+                {%- render 'newsletter-form', section_id: section.id, snippet_context: 'section' -%}
+              {%- when 'share_buttons' -%}
+                {%- render 'social-sharing' -%}
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      {% if section.settings.image != blank %}
+        <div class="newsletter-section__image newsletter-section__image--{{ section.settings.image_width }}">
+          <div
+            class="image-wrap {% if section.settings.image_mask != 'none' %}svg-mask svg-mask--{{ section.settings.image_mask }}{% endif %}"
+            style="height: 0; padding-bottom: {{ 100 | divided_by: section.settings.image.aspect_ratio }}%;"
+          >
+            {%- render 'image-element',
+              img: section.settings.image,
+              sizeVariable: section.settings.image_width,
+              widths: '360, 540, 720, 1020',
+            -%}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.newsletter.settings.content"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.newsletter.settings.color_scheme.label",
+      "default": "1",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.newsletter.settings.color_scheme.options.none.label"
+        },
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "align_text",
+      "label": "t:sections.newsletter.settings.align_text.label",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.newsletter.settings.align_text.options.left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.newsletter.settings.align_text.options.center.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.newsletter.settings.align_text.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.newsletter.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.newsletter.settings.image.label",
+      "info": "t:sections.newsletter.settings.image.info"
+    },
+    {
+      "type": "select",
+      "id": "image_width",
+      "label": "t:common.image_size.label",
+      "default": "33",
+      "options": [
+        {
+          "value": "33",
+          "label": "t:common.image_size.options.small.label"
+        },
+        {
+          "value": "50",
+          "label": "t:common.image_size.options.medium.label"
+        },
+        {
+          "value": "66",
+          "label": "t:common.image_size.options.large.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_mask",
+      "label": "t:common.image_mask.label",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:common.image_mask.options.none.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:common.image_mask.options.portrait.label"
+        },
+        {
+          "value": "landscape",
+          "label": "t:common.image_mask.options.landscape.label"
+        },
+        {
+          "value": "square",
+          "label": "t:common.image_mask.options.square.label"
+        },
+        {
+          "value": "rounded",
+          "label": "t:common.image_mask.options.rounded.label"
+        },
+        {
+          "value": "rounded-wave",
+          "label": "t:common.image_mask.options.rounded-wave.label"
+        },
+        {
+          "value": "rounded-top",
+          "label": "t:common.image_mask.options.rounded-top.label"
+        },
+        {
+          "value": "star",
+          "label": "t:common.image_mask.options.star.label"
+        },
+        {
+          "value": "splat-1",
+          "label": "t:common.image_mask.options.splat-1.label"
+        },
+        {
+          "value": "splat-2",
+          "label": "t:common.image_mask.options.splat-2.label"
+        },
+        {
+          "value": "splat-3",
+          "label": "t:common.image_mask.options.splat-3.label"
+        },
+        {
+          "value": "splat-4",
+          "label": "t:common.image_mask.options.splat-4.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.newsletter.settings.image_position.label",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.newsletter.settings.image_position.options.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.newsletter.settings.image_position.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "divider",
+      "label": "t:sections.newsletter.settings.divider.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "top_padding",
+      "label": "t:sections.newsletter.settings.top_padding.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "bottom_padding",
+      "label": "t:sections.newsletter.settings.bottom_padding.label",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "title",
+      "name": "t:sections.newsletter.blocks.title.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.newsletter.blocks.title.settings.title.label",
+          "default": "Sign up and save"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:common.heading_size.label",
+          "default": "h2",
+          "options": [
+            {
+              "value": "h3",
+              "label": "t:common.heading_size.options.small.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:common.heading_size.options.medium.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:common.heading_size.options.large.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:common.heading_size.options.extra_large.label"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.newsletter.blocks.text.name",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.newsletter.blocks.text.settings.text.label",
+          "default": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>"
+        }
+      ]
+    },
+    {
+      "type": "form",
+      "name": "t:sections.newsletter.blocks.form.name",
+      "limit": 1
+    },
+    {
+      "type": "share_buttons",
+      "name": "t:sections.newsletter.blocks.share_buttons.name",
+      "limit": 1
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "t:sections.newsletter.presets.email_signup.name",
+      "blocks": [
+        {
+          "type": "title"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "form"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["custom.popups"]
+  },
+  "locales": {
+    "en": {
+      "newsletter": "newsletter",
+      "snippet_name": "color-scheme-texture",
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Enter your email",
+          "newsletter_confirmation": "Thanks for subscribing",
+          "submit": "Subscribe"
+        },
+        "social": {
+          "share_this": "Share this",
+          "share_on_facebook": "Share",
+          "share_on_twitter": "Tweet",
+          "share_on_pinterest": "Pin it",
+          "alt_text": {
+            "share_on_facebook": "Share on Facebook",
+            "share_on_twitter": "Tweet on Twitter",
+            "share_on_pinterest": "Pin on Pinterest"
+          }
+        }
+      }
+    },
+    "es": {
+      "newsletter": "newsletter",
+      "snippet_name": "color-scheme-texture",
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Suscríbete a nuestra lista de correo",
+          "newsletter_confirmation": "Gracias por suscribirse",
+          "submit": "Suscribir"
+        },
+        "social": {
+          "share_this": "Compartir este",
+          "share_on_facebook": "Compartir",
+          "share_on_twitter": "Tuitear",
+          "share_on_pinterest": "Hacer pin",
+          "alt_text": {
+            "share_on_facebook": "Compartir en Facebook",
+            "share_on_twitter": "Tuitear en Twitter",
+            "share_on_pinterest": "Pinear en Pinterest"
+          }
+        }
+      }
+    },
+    "fr": {
+      "newsletter": "newsletter",
+      "snippet_name": "color-scheme-texture",
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Inscrivez-vous à notre infolettre",
+          "newsletter_confirmation": "Merci de vous être inscrit",
+          "submit": "S'inscrire"
+        },
+        "social": {
+          "share_this": "Partager",
+          "share_on_facebook": "Partager",
+          "share_on_twitter": "Tweeter",
+          "share_on_pinterest": "Épingler",
+          "alt_text": {
+            "share_on_facebook": "Partager sur Facebook",
+            "share_on_twitter": "Tweeter sur Twitter",
+            "share_on_pinterest": "Épingler sur Pinterest"
+          }
+        }
+      }
+    },
+    "de": {
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Melden Sie sich für unsere Mailingliste an",
+          "newsletter_confirmation": "Danke fürs Anmelden",
+          "submit": "Abonnieren"
+        },
+        "social": {
+          "share_this": "Teile das",
+          "share_on_facebook": "Teilen",
+          "share_on_twitter": "Twittern",
+          "share_on_pinterest": "Pinnen",
+          "alt_text": {
+            "share_on_facebook": "Auf Facebook teilen",
+            "share_on_twitter": "Auf Twitter twittern",
+            "share_on_pinterest": "Auf Pinterest pinnen"
+          }
+        }
+      }
+    },
+    "it": {
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Inserisci la tua email",
+          "newsletter_confirmation": "Grazie per l'iscrizione",
+          "submit": "Iscriviti"
+        },
+        "social": {
+          "share_this": "Condividi questo",
+          "share_on_facebook": "Condividi",
+          "share_on_twitter": "Tweet",
+          "share_on_pinterest": "Appuntalo",
+          "alt_text": {
+            "share_on_facebook": "Condividi su Facebook",
+            "share_on_twitter": "Twitta su Twitter",
+            "share_on_pinterest": "Aggiungi un pin su Pinterest"
+          }
+        }
+      }
+    },
+    "pt-BR": {
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Assine nossa newsletter",
+          "newsletter_confirmation": "Obrigado por assinar",
+          "submit": "Inscrever"
+        },
+        "social": {
+          "share_this": "Compartilhar isso",
+          "share_on_facebook": "Compartilhar",
+          "share_on_twitter": "Tweetar",
+          "share_on_pinterest": "Pin it",
+          "alt_text": {
+            "share_on_facebook": "Compartilhe no Facebook",
+            "share_on_twitter": "Tuite no Twitter",
+            "share_on_pinterest": "Adicione no Pinterest"
+          }
+        }
+      }
+    },
+    "pt-PT": {
+      "general": {
+        "newsletter_form": {
+          "newsletter_email": "Subscreva a nossa lista de emails",
+          "newsletter_confirmation": "Obrigado pela sua subscrição",
+          "submit": "Subscrever"
+        },
+        "social": {
+          "share_this": "Compartilhar isso",
+          "share_on_facebook": "Partilhar",
+          "share_on_twitter": "Tweetar",
+          "share_on_pinterest": "Pin it",
+          "alt_text": {
+            "share_on_facebook": "Partilhe no Facebook",
+            "share_on_twitter": "Tuíte no Twitter",
+            "share_on_pinterest": "Adicione no Pinterest"
+          }
+        }
+      }
+    }
+  }
+}
+{% endschema %}

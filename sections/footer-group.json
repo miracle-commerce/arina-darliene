@@ -1,0 +1,61 @@
+{
+  "type": "footer",
+  "name": "t:sections.footer-group.name",
+  "sections": {
+    "footer-promotions": {
+      "type": "footer-promotions",
+      "settings": {
+        "hide_homepage": false,
+        "image_size": "square"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-0": {
+          "type": "menu",
+          "settings": {
+            "title": "",
+            "menu": "footer",
+            "enable_account_link": true
+          }
+        },
+        "footer-1": {
+          "type": "contact",
+          "settings": {
+            "phone": "",
+            "contact": "contact-us",
+            "chat": "",
+            "enable_social": false
+          }
+        },
+        "footer-2": {
+          "type": "payment",
+          "settings": {
+            "show_payment_icons": true,
+            "show_locale_selector": true,
+            "show_currency_selector": true,
+            "show_currency_flags": true
+          }
+        }
+      },
+      "block_order": [
+        "footer-0",
+        "footer-1",
+        "footer-2"
+      ],
+      "settings": {
+        "show_newsletter": false,
+        "newsletter_richtext": "<p>Subscribe today to hear first about our sales<\/p>",
+        "footer_main_menu": false,
+        "show_copyright": true,
+        "copyright_text": "",
+        "policies_menu": ""
+      }
+    }
+  },
+  "order": [
+    "footer-promotions",
+    "footer"
+  ]
+}

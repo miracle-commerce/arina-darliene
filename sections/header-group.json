@@ -1,0 +1,66 @@
+{
+  "type": "header",
+  "name": "t:sections.header-group.name",
+  "sections": {
+    "toolbar": {
+      "type": "toolbar",
+      "blocks": {
+        "toolbar-0": {
+          "type": "announcement",
+          "settings": {
+            "richtext": "",
+            "richtext_mobile": ""
+          }
+        },
+        "toolbar-1": {
+          "type": "announcement",
+          "settings": {
+            "richtext": "",
+            "richtext_mobile": ""
+          }
+        }
+      },
+      "block_order": [
+        "toolbar-0",
+        "toolbar-1"
+      ],
+      "settings": {
+        "announcement_center": false,
+        "toolbar_social": false,
+        "show_locale_selector": true,
+        "show_currency_selector": true,
+        "show_currency_flags": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "1735b6d0-dc3c-4a26-b065-e5266ef84d98": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify:\/\/shop_images\/604639_1.png",
+            "desktop_logo_width": 360,
+            "mobile_logo_width": 140
+          }
+        }
+      },
+      "block_order": [
+        "1735b6d0-dc3c-4a26-b065-e5266ef84d98"
+      ],
+      "settings": {
+        "main_menu_link_list": "main-menu",
+        "hover_menu": true,
+        "main_menu_alignment": "center",
+        "mega_products": true,
+        "header_sticky": true,
+        "header_footer_menu": true,
+        "sticky_index": false,
+        "sticky_collection": false
+      }
+    }
+  },
+  "order": [
+    "toolbar",
+    "header"
+  ]
+}
