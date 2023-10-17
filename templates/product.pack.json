@@ -1,0 +1,9 @@
+{
+  "name":"Pack Product Page",
+  "sections":{
+    "main":{
+      "type":"main-product-pack"
+    }
+  },
+  "order":["main"]
+}
