@@ -44,8 +44,8 @@
       ],
       "settings": {
         "full_width": false,
-        "height": 630,
-        "height_mobile": 430,
+        "height": 700,
+        "height_mobile": 510,
         "style": "arrows",
         "autoplay": true,
         "autoplay_speed": 5,
@@ -299,6 +299,29 @@
         "divider": false,
         "color_scheme": "none"
       }
+    },
+    "1697720805490bd30a": {
+      "type": "apps",
+      "blocks": {
+        "8545d3d8-ca52-4131-819c-4bc5ec99ea4c": {
+          "type": "shopify:\/\/apps\/etsy-reviews\/blocks\/carousel-widget-block\/8df530b9-db50-44f9-a43b-c93c6bac56a9",
+          "settings": {
+            "themeId": "light",
+            "autoscroll": true,
+            "showRating": true,
+            "showProductPicture": false,
+            "showDate": true,
+            "showAvatar": true
+          }
+        }
+      },
+      "block_order": [
+        "8545d3d8-ca52-4131-819c-4bc5ec99ea4c"
+      ],
+      "settings": {
+        "full_width": true,
+        "space_around": true
+      }
     }
   },
   "order": [
@@ -310,6 +333,7 @@
     "featured-collection3",
     "09b722e4-8b9c-4f35-a427-471dd4197fad",
     "f95daaa3-58bc-4b3f-bc7a-83e13dd22bda",
-    "text-columns"
+    "text-columns",
+    "1697720805490bd30a"
   ]
 }

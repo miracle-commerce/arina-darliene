@@ -61,7 +61,7 @@
     "collection_grid_image_fill": false,
     "collection_grid_image": "collection",
     "collection_grid_image_margin": 7,
-    "cart_type": "dropdown",
+    "cart_type": "page",
     "cart_additional_buttons": false,
     "cart_notes_enable": false,
     "cart_terms_conditions_enable": false,
@@ -128,7 +128,15 @@
     },
     "content_for_index": [
 
-    ]
+    ],
+    "blocks": {
+      "2153490007123654574": {
+        "type": "shopify:\/\/apps\/consentmo-gdpr\/blocks\/gdpr_cookie_consent\/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {
+        }
+      }
+    }
   },
   "presets": {
     "Modern": {

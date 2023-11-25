@@ -101,7 +101,7 @@
       "featured_product": "Vorgestelltes Produkt",
       "popular_posts": "Populäre Artikel",
       "latest_posts": "Neueste Artikel",
-      "explore_more": "Erkunde mehr",
+      "explore_more": "Mehr erfahren",
       "more_from": "Mehr von",
       "back_to_blog": "Zurück zu {{ title }}"
     },
@@ -319,7 +319,7 @@
       "save_html": "Sparen {{ saved_amount }}",
       "collection_return": "Zurück zur {{ collection }}",
       "next_product": "Nächster: {{ title }}",
-      "sale": "Reduziert",
+      "sale": "Sale",
       "sale_price": "Sonderpreis",
       "regular_price": "Normaler Preis",
       "from_text_html": "<span>Von<\/span> {{ price }}",
@@ -385,6 +385,6 @@
     }
   },
   "date_formats": {
-    "month_day_year": "%B %d, %Y"
+    "month_day_year": "%d%B, %Y"
   }
 }

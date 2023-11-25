@@ -32,7 +32,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.main-product.name",
+  "name": "Pack Product Template",
   "settings": [
     {
       "type": "checkbox",
@@ -200,11 +200,6 @@
   "limit": 1
 },
 {
-  "type": "quantity_selector",
-  "name": "t:product_block.quantity_selector.name",
-  "limit": 1
-},
-{
   "type": "complementary_products",
   "name": "Complementary products",
   "limit": 1,
@@ -286,6 +281,10 @@
       "label": "t:product_block.size_chart.settings.page.label"
     }
   ]
+},
+{
+  "name":"Bundle widget", 
+  "type":"bundle_widget"
 },
 {
   "type": "variant_picker",

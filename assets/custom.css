@@ -1,0 +1,102 @@
+/* Styles for product pack selector by Paul */
+pack-picker{
+    padding: 20px 0;
+    border-top: 2px solid var(--colorBorder);
+    border-bottom: 2px solid var(--colorBorder);
+    display: block;
+}
+.selected_pack_panel{
+    display: flex; 
+    flex-wrap: wrap; 
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.selectedPackItem{
+    width: 48px;
+}
+
+.selectedPackItem__icon{
+    background-image: var(--item-background-image);
+    background-color: var(--item-background-color);
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    border: 3px solid; 
+    border-color: var(--colorBody);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--colorBorder);
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    height: 48px; 
+    font-weight: 600;
+    font-size: 16px; 
+    cursor: pointer;
+}
+
+.selectedPackItem.selected .selectedPackItem__icon .icon-plus{
+    display: none; 
+}
+
+.selectedPackItem__label{
+    display: inline-block; 
+    width: 100%; 
+    text-align: center; 
+    margin-top: 5px; 
+    line-height: 1.2;
+    font-size: 10px; 
+    font-weight: 600; 
+}
+
+.clearSelectedPackItem{
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600; 
+    line-height: 1.2; 
+    margin-top: 14px; 
+    margin-left: 10px;
+}
+
+.clearSelectedPackItem:hover{
+    text-decoration: underline;
+}
+
+.bundle-items__wrapper{
+    border-top: 1px solid var(--colorBorder);
+    margin-top: 20px;
+    padding-top: 20px; 
+}
+
+.bundle-items__label{
+    font-weight: 600; 
+    margin-bottom: 10px;
+}
+
+.bundle-items__wrapper.hide{
+    display: none; 
+}
+
+.bundle-items{
+    display: flex; 
+    flex-wrap: wrap; 
+    column-gap: 10px; 
+    row-gap: 10px;
+}
+.bundle-item{
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    border: 3px solid; 
+    border-color: var(--colorBody);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--colorBorder);
+    width: 48px; 
+    height: 48px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+

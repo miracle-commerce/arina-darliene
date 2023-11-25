@@ -1,0 +1,44 @@
+{%- liquid 
+  assign bundle_item_limit = product.metafields.custom.bundle.value['size']
+  assign bundle_items = product.metafields.custom.bundle.value['bundle_items'].value
+  assign bundle_pack_name = product.metafields.custom.bundle.value.name
+-%}
+<pack-picker data-item-limit="{{bundle_item_limit}}" data-pack-name="{{- product.title -}}">
+  <div class="selected_pack_panel" data-selected-pack-panel>
+    <input type="hidden" name="items[0][id]" value="{{product.selected_or_first_available_variant.id}}">
+    {% for i in (1..bundle_item_limit) %}
+      <span class="selectedPackItem" 
+        data-selected-item="false"
+        data-item-id=""
+        style="--item-background-image: none; --item-background-color: none;">
+        <span class="selectedPackItem__icon"><span class="icon-plus">+</span></span>
+        <span class="selectedPackItem__label" data-selectedItem-label>Add Item</span>
+        <input type="hidden" name="items[{{i}}][id]" value="" form="{{form_id}}" data-bundle-item-id-input>
+        <input type="hidden" name="items[{{i}}][properties]['Pack Name']" form="{{form_id}}" value="{{bundle_pack_name}}" data-bundle-item-property-input>
+      </span>
+    {% endfor %}
+    <span class="clearSelectedPackItem" data-selected-pack-trigger>CLEAR ALL</span>
+  </div>
+
+  <div class="bundle-items__wrapper" data-bundle-items-panel>
+    <div class="bundle-items__label">Choose Your Colour</div>
+    <div class="bundle-items" data-bundle-items>
+      {%- for bundle_item in bundle_items -%}
+        {%- liquid
+          assign item_option_value = bundle_item.product.title | split: '-' | last
+          assign item_swatch_image = bundle_item.product.title | handle | append: '.png' | file_img_url: '50x50' | prepend: 'https:' | split: '?' | first
+          assign color_swatch_fallback = bundle_item.product.title | split: '-' | last | handle
+        -%}
+        <span 
+          class="bundle-item" 
+          title="{{item_option_value}}" 
+          style="background-image: url('{{item_swatch_image}}'); background-color: {{- color_swatch_fallback -}}"
+          data-item-id="{{bundle_item.id}}"
+          data-option-value="{{- item_option_value -}}"
+          data-item-swatch-image = "{{- item_swatch_image -}}"
+          data-item-fallback-color = "{{- color_swatch_fallback -}}"
+          data-bundle-item></span>
+      {%- endfor -%}
+    </div>
+  </div>
+</pack-picker>

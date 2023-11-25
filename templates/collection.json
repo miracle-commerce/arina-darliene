@@ -34,6 +34,28 @@
         "lazyload_images": true
       }
     },
+    "865b5624-7912-4162-8145-888985bcf62e": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17990098256138__865b5624-7912-4162-8145-888985bcf62e-text-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Dear customers, <\/p><p>due to technical reasons, we are temporarily unable to offer savings sets on our website. We are actively working to reinstate this option as soon as possible. <\/p><p>Thank you for your understanding!<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--17990098256138__865b5624-7912-4162-8145-888985bcf62e-text-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "color_scheme": "2",
+        "divider": false
+      }
+    },
     "main-collection": {
       "type": "main-collection",
       "blocks": {
@@ -90,6 +112,7 @@
   "order": [
     "collection-header",
     "promo-grid",
+    "865b5624-7912-4162-8145-888985bcf62e",
     "main-collection",
     "recently-viewed",
     "e7f3c45c-918a-49a8-b49c-b48a5074b1fa"

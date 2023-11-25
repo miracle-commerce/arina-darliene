@@ -55,6 +55,8 @@
   endfor
 -%}
 
+{% comment %} end {% endcomment %}
+
 <div id="ProductSection-{{ section_id }}-{{ product.id }}"
   class="product-section"
   data-section-id="{{ section_id }}"
@@ -63,7 +65,9 @@
   data-product-handle="{{ product.handle }}"
   data-product-title="{{ product.title | escape }}"
   data-history="{{ enableHistory }}"
-  data-modal="{{ isModal }}">
+  data-modal="{{ isModal }}"
+  data-is-pack="{{ is_pack_product | json}}"
+>
 
   {%- render 'product-template-variables', product: product, current_variant: current_variant -%}
 
@@ -346,7 +350,7 @@
                     <div class="product-block" {{ block.shopify_attributes }}>
                       {%- unless product.empty? -%}
                         <div class="product-block">
-                          {%- render 'product-form',
+                          {%- render 'product-pack-form',
                             form_id: form_id,
                             product: product,
                             show_dynamic_checkout: block.settings.show_dynamic_checkout,
@@ -416,6 +420,10 @@
                     <div class="product-block" {{ block.shopify_attributes }}>
                       {{ block.settings.code }}
                     </div>
+                  {%- when 'bundle_widget' -%}
+                      <div class="product-block" {{block.shopify_attributes}}>
+                        {% render 'bundle-item-picker', product: product, form_id: form_id %}
+                      </div>
                 {%- endcase -%}
               {%- else -%}
                 <div data-blocks-holder

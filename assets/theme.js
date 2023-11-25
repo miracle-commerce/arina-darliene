@@ -8811,3 +8811,93 @@ if (console && console.log) {
   });
 
 })();
+
+
+// Styles for pack selector
+class PackPicker extends HTMLElement{
+  constructor(){
+    super();
+    console.log('pack-picker');
+    this.init();
+  }
+
+  packname = this.dataset.packName;
+
+  items = [];
+
+  itemLimit = parseInt(this.dataset.itemLimit);
+
+  selectors = {
+    selectedPackPanel: this.querySelector("[data-selected-pack-panel]"), 
+    selectedItems: this.querySelectorAll("[data-selected-item]"), 
+    packItems: this.querySelectorAll("[data-bundle-item]"),
+    bundleItemsPanel: this.querySelector("[data-bundle-items-panel]"),
+    clearSelectedItems: this.querySelector("[data-selected-pack-trigger]")
+  }
+
+  addItem(el){
+    const itemId = el.dataset.itemId; 
+    const itemValue = el.dataset.optionValue;
+    const itemSwatchImage = el.dataset.itemSwatchImage; 
+    const itemFallbackColor = el.dataset.itemFallbackColor; 
+    const targetEl = this.querySelector("[data-selected-item = 'false']");
+    const targetIdInputField = targetEl.querySelector("[data-bundle-item-id-input]");
+    targetEl.dataset.selectedItem = 'true';
+    targetEl.dataset.itemId = itemId;
+    targetIdInputField.value = itemId;
+    targetEl.style.setProperty('--item-background-image', `url(${itemSwatchImage})`); 
+    targetEl.style.setProperty('--item-background-color', itemFallbackColor);
+    targetEl.querySelector("[data-selectedItem-label]").innerText = itemValue;
+    targetEl.classList.add("selected");
+
+    if(this.querySelectorAll("[data-selected-item = 'true']").length >= this.itemLimit){
+      this.selectors.bundleItemsPanel.classList.add("hide");
+    }
+  }
+
+  clearSingleSelectedItem(el){
+    el.dataset.selectedItem = 'false';
+    el.dataset.itemId = '';
+    el.querySelector("[data-bundle-item-id-input]").value = "";
+    el.style.setProperty('--item-background-image', 'none'); 
+    el.style.setProperty('--item-background-color', 'none');
+    el.querySelector("[data-selectedItem-label]").innerText = "Add Item";
+    if(this.selectors.bundleItemsPanel.classList.contains('hide')){
+      this.selectors.bundleItemsPanel.classList.remove("hide");
+    }
+    if(el.classList.contains('selected')){
+      el.classList.remove("selected");
+    }
+  }
+
+
+  clearAllSelectedItems(){
+    this.selectors.selectedItems.forEach((selectedItem) =>{
+      this.clearSingleSelectedItem(selectedItem);
+    })
+  }
+
+  init(){
+    this.selectors.packItems.forEach((packItem)=>{
+      packItem.addEventListener('click', ()=>{
+        this.addItem(packItem);
+      })
+    })
+
+    // Clear all selected Items
+    this.selectors.clearSelectedItems.addEventListener("click", ()=>{
+      this.clearAllSelectedItems();
+    })
+
+    // Remove Single Selected Item 
+    this.selectors.selectedItems.forEach((selectedItem)=>{
+      selectedItem.addEventListener('click', ()=>{
+        if(selectedItem.dataset.selectedItem == 'true'){
+          this.clearSingleSelectedItem(selectedItem);
+        }
+      })
+    })
+  }
+}
+
+customElements.define("pack-picker", PackPicker);
