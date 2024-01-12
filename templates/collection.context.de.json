@@ -4,5 +4,17 @@
     "market": "de"
   },
   "sections": {
+    "promo-grid": {
+      "settings": {
+      },
+      "blocks": {
+        "banner": {
+          "disabled": true,
+          "settings": {
+            "text": ""
+          }
+        }
+      }
+    }
   }
 }

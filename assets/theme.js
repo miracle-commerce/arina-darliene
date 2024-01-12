@@ -8832,7 +8832,8 @@ class PackPicker extends HTMLElement{
     selectedItems: this.querySelectorAll("[data-selected-item]"), 
     packItems: this.querySelectorAll("[data-bundle-item]"),
     bundleItemsPanel: this.querySelector("[data-bundle-items-panel]"),
-    clearSelectedItems: this.querySelector("[data-selected-pack-trigger]")
+    clearSelectedItems: this.querySelector("[data-selected-pack-trigger]"),
+    targetFormId: this.dataset.targetForm
   }
 
   addItem(el){

@@ -14,11 +14,12 @@
       "blocks": {
         "banner": {
           "type": "banner",
+          "disabled": true,
           "settings": {
-            "heading": "Sale",
-            "text": "Up to 20% opening discount on selected items in the first 2 weeks",
+            "heading": "",
+            "text": "",
             "link": "",
-            "label": "Shop sale",
+            "label": "",
             "color_scheme": "2"
           }
         }
@@ -26,6 +27,7 @@
       "block_order": [
         "banner"
       ],
+      "disabled": true,
       "settings": {
         "full_width": false,
         "gutter_size": 20,

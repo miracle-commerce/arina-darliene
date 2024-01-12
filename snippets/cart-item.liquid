@@ -30,6 +30,11 @@
           {{ product.selling_plan_allocation.selling_plan.name }}
         </div>
       {%- endif -%}
+      <div class="cart__item--components">
+        {%- for component_item in product.item_components -%}
+          <p>{{component_item.title }}</p>
+        {%- endfor -%}
+      </div>
       {%- assign property_size = product.properties | size -%}
       {% if property_size > 0 %}
         {% for p in product.properties %}

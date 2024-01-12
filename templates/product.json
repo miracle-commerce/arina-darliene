@@ -52,6 +52,21 @@
             "surface_pickup_enable": true,
             "show_gift_card_recipient": false
           }
+        },
+        "ea42aed4-7687-4e4f-a98f-f4ada310396f": {
+          "type": "shopify:\/\/apps\/bundly-mix-match-bundles\/blocks\/mixnmatch\/1cabc354-c7f9-42e9-8322-7655396b33b7",
+          "settings": {
+          }
+        },
+        "6a873372-0b42-4892-87f6-ed80a618e004": {
+          "type": "shopify:\/\/apps\/bundly-mix-match-bundles\/blocks\/bogo\/1cabc354-c7f9-42e9-8322-7655396b33b7",
+          "settings": {
+          }
+        },
+        "506fe98e-42f1-4aeb-bd30-43541ec623cc": {
+          "type": "shopify:\/\/apps\/bundly-mix-match-bundles\/blocks\/pack\/1cabc354-c7f9-42e9-8322-7655396b33b7",
+          "settings": {
+          }
         }
       },
       "block_order": [
@@ -61,6 +76,9 @@
         "sales_point3",
         "sales_point4",
         "inventory_status",
+        "ea42aed4-7687-4e4f-a98f-f4ada310396f",
+        "6a873372-0b42-4892-87f6-ed80a618e004",
+        "506fe98e-42f1-4aeb-bd30-43541ec623cc",
         "buy_buttons"
       ],
       "settings": {

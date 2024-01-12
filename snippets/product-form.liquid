@@ -63,20 +63,23 @@
   {%- endif -%}
 
   <div class="shopify-payment-terms product__policies">{{ form | payment_terms }}</div>
-
-  <select name="id" data-product-select class="product-single__variants no-js">
-    {%- for variant in product.variants -%}
-      {%- if variant.available -%}
-        <option {% if variant == product.selected_or_first_available_variant %}
-          selected="selected"{% endif %}
-          value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-      {%- else -%}
-        <option disabled="disabled">
-          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
-        </option>
-      {%- endif -%}
-    {%- endfor -%}
-  </select>
+  {%- if product.variants.size > 1 -%}
+    <select name="id" data-product-select class="product-single__variants no-js">
+      {%- for variant in product.variants -%}
+        {%- if variant.available -%}
+          <option {% if variant == product.selected_or_first_available_variant %}
+            selected="selected"{% endif %}
+            value="{{ variant.id }}">
+            {{ variant.title }} - {{ variant.price | money_with_currency }}
+          </option>
+        {%- else -%}
+          <option disabled="disabled">
+            {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+          </option>
+        {%- endif -%}
+      {%- endfor -%}
+    </select>
+  {%- else -%}
+    <input type="hidden" name="id" data-product-select value="{{product.selected_or_first_available_variant.id }}">
+  {%- endif -%}
 {%- endform -%}

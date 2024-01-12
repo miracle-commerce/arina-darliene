@@ -154,7 +154,11 @@
             </div>
 
             <div data-product-blocks>
-              {%- capture form_id -%}AddToCartForm-{{ section_id }}-{{ product.id }}{%- endcapture -%}
+              {%- if template.suffix contains "bundly" or template.suffix contains "pack" -%}
+                {%- assign form_id = 'product-form-' | append: section_id -%}
+              {%- else-%}
+                {%- assign form_id = 'AddToCartForm-' | append: section_id | append: '-' | append: product.id -%}
+              {%- endif -%}
               {%- for block in blocks -%}
                 {%- case block.type -%}
                   {%- when '@app' -%}

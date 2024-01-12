@@ -3,7 +3,7 @@
   assign bundle_items = product.metafields.custom.bundle.value['bundle_items'].value
   assign bundle_pack_name = product.metafields.custom.bundle.value.name
 -%}
-<pack-picker data-item-limit="{{bundle_item_limit}}" data-pack-name="{{- product.title -}}">
+<pack-picker data-item-limit="{{bundle_item_limit}}" data-pack-name="{{- product.title -}}" data-target-form="{{form_id}}">
   <div class="selected_pack_panel" data-selected-pack-panel>
     <input type="hidden" name="items[0][id]" value="{{product.selected_or_first_available_variant.id}}">
     {% for i in (1..bundle_item_limit) %}
@@ -13,6 +13,7 @@
         style="--item-background-image: none; --item-background-color: none;">
         <span class="selectedPackItem__icon"><span class="icon-plus">+</span></span>
         <span class="selectedPackItem__label" data-selectedItem-label>Add Item</span>
+        {%- comment -%}{%- endcomment -%}
         <input type="hidden" name="items[{{i}}][id]" value="" form="{{form_id}}" data-bundle-item-id-input>
         <input type="hidden" name="items[{{i}}][properties]['Pack Name']" form="{{form_id}}" value="{{bundle_pack_name}}" data-bundle-item-property-input>
       </span>

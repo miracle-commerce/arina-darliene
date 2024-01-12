@@ -24,7 +24,7 @@
           "type": "slide",
           "settings": {
             "top_subheading": "",
-            "title": "Buy more -         \npay less",
+            "title": "Buy more - pay less",
             "title_size": 40,
             "subheading": "Get nice discounts by buying yarn bundles",
             "link": "shopify:\/\/collections\/bundles",
@@ -304,7 +304,7 @@
       "type": "apps",
       "blocks": {
         "8545d3d8-ca52-4131-819c-4bc5ec99ea4c": {
-          "type": "shopify:\/\/apps\/etsy-reviews\/blocks\/carousel-widget-block\/8df530b9-db50-44f9-a43b-c93c6bac56a9",
+          "type": "shopify:\/\/apps\/reputon-etsy-reviews\/blocks\/carousel-widget-block\/8df530b9-db50-44f9-a43b-c93c6bac56a9",
           "settings": {
             "themeId": "light",
             "autoscroll": true,
