@@ -135,6 +135,14 @@
         "disabled": false,
         "settings": {
         }
+      },
+      "124348908681409149": {
+        "type": "shopify:\/\/apps\/simple-bundles-kits\/blocks\/simple-bundles-v2\/e553276b-36b2-446d-b80a-aa47fe5f96ac",
+        "disabled": false,
+        "settings": {
+          "select_placeholder": "Please select an option",
+          "disable_oos_options": false
+        }
       }
     }
   },
