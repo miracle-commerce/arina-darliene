@@ -2,12 +2,12 @@
   assign pack_size = product.metafields.custom.pack_size
   assign pack_swatch_images = product.metafields.custom.pack_item_color_swatch_images.value
 -%}
-<pack-picker data-item-limit="{{bundle_item_limit}}" data-pack-name="{{- product.title -}}" data-target-form="{{form_id}}">
+<pack-picker data-item-limit="{{pack_size}}" data-pack-name="{{- product.title -}}" data-target-form="{{form_id}}">
   <div class="selected_pack_panel" data-selected-pack-panel>
     {% for i in (1..pack_size) %}
       <span class="selectedPackItem" 
         data-selected-item="false"
-        data-item-id=""
+        data-item-index = "{{forloop.index0}}"
         style="--item-background-image: none; --item-background-color: none;">
         <span class="selectedPackItem__icon"><span class="icon-plus">+</span></span>
         <span class="selectedPackItem__label" data-selectedItem-label>Add Item</span>

@@ -8817,7 +8817,7 @@ if (console && console.log) {
 class PackPicker extends HTMLElement{
   constructor(){
     super();
-    console.log('pack-picker');
+    console.log(window.SimpleBundles);
     this.init();
   }
 
@@ -8837,15 +8837,14 @@ class PackPicker extends HTMLElement{
   }
 
   addItem(el){
-    const itemId = el.dataset.itemId; 
     const itemValue = el.dataset.optionValue;
+    console.log(itemValue);
+    console.log(this.SimpleBundleWidget);
     const itemSwatchImage = el.dataset.itemSwatchImage; 
     const itemFallbackColor = el.dataset.itemFallbackColor; 
     const targetEl = this.querySelector("[data-selected-item = 'false']");
-    const targetIdInputField = targetEl.querySelector("[data-bundle-item-id-input]");
+    const targetElIndex = parseInt(targetEl.dataset.itemIndex);
     targetEl.dataset.selectedItem = 'true';
-    targetEl.dataset.itemId = itemId;
-    targetIdInputField.value = itemId;
     targetEl.style.setProperty('--item-background-image', `url(${itemSwatchImage})`); 
     targetEl.style.setProperty('--item-background-color', itemFallbackColor);
     targetEl.querySelector("[data-selectedItem-label]").innerText = itemValue;
@@ -8854,12 +8853,16 @@ class PackPicker extends HTMLElement{
     if(this.querySelectorAll("[data-selected-item = 'true']").length >= this.itemLimit){
       this.selectors.bundleItemsPanel.classList.add("hide");
     }
+
+    if(this.SimpleBundleSelectors.length > 0){
+      this.SimpleBundleSelectors[targetElIndex].value = itemValue;
+      this.SimpleBundleSelectors[targetElIndex].dispatchEvent(new Event("change"))
+    }
   }
 
   clearSingleSelectedItem(el){
+    const targetIndex = el.dataset.itemIndex;
     el.dataset.selectedItem = 'false';
-    el.dataset.itemId = '';
-    el.querySelector("[data-bundle-item-id-input]").value = "";
     el.style.setProperty('--item-background-image', 'none'); 
     el.style.setProperty('--item-background-color', 'none');
     el.querySelector("[data-selectedItem-label]").innerText = "Add Item";
@@ -8868,6 +8871,11 @@ class PackPicker extends HTMLElement{
     }
     if(el.classList.contains('selected')){
       el.classList.remove("selected");
+    }
+
+    if(this.SimpleBundleSelectors.length > 0){
+      this.SimpleBundleSelectors[targetIndex].value = "";
+      this.SimpleBundleSelectors[targetIndex].dispatchEvent(new Event("change"))
     }
   }
 
@@ -8898,6 +8906,20 @@ class PackPicker extends HTMLElement{
         }
       })
     })
+  }
+
+  connectedCallback(){
+    if(SimpleBundles){
+      if(Object.keys(SimpleBundles.productVariants).length > 0){
+        setTimeout(()=>{
+          this.SimpleBundleWidget = document.getElementById("simple-bundles-io-options");
+          this.SimpleBundleSelectors = this.SimpleBundleWidget.querySelectorAll("select");
+          this.SimpleBundleSelectors.forEach((simpleBundleSelect)=>{
+            simpleBundleSelect.value = "";
+          })
+        }, 1500)
+      }
+    }
   }
 }
 

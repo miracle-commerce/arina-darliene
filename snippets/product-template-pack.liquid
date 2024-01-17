@@ -354,7 +354,7 @@
                     <div class="product-block" {{ block.shopify_attributes }}>
                       {%- unless product.empty? -%}
                         <div class="product-block">
-                          {%- render 'product-pack-form',
+                          {%- render 'product-form',
                             form_id: form_id,
                             product: product,
                             show_dynamic_checkout: block.settings.show_dynamic_checkout,
