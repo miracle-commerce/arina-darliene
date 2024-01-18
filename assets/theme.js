@@ -8817,7 +8817,6 @@ if (console && console.log) {
 class PackPicker extends HTMLElement{
   constructor(){
     super();
-    console.log(window.SimpleBundles);
     this.init();
   }
 
@@ -8834,7 +8833,9 @@ class PackPicker extends HTMLElement{
     packItems: this.querySelectorAll("[data-bundle-item]"),
     bundleItemsPanel: this.querySelector("[data-bundle-items-panel]"),
     clearSelectedItems: this.querySelector("[data-selected-pack-trigger]"),
-    targetFormId: this.dataset.targetForm
+    targetForm: document.getElementById(this.dataset.targetForm),
+    warningEl: this.querySelector("[data-item-warning]"),
+    blankItemsCountEl: this.querySelector("[data-blank-items-count]")
   }
 
   searchStringInArray(stringArray, searchString) {
@@ -8847,6 +8848,14 @@ class PackPicker extends HTMLElement{
     return matchingItem.trim();
   }
 
+  actionWarningEl(active){
+    if(active){
+      this.selectors.warningEl.classList.add("show");
+    }else{
+      this.selectors.warningEl.classList.remove("show");
+    }
+  }
+
   addItem(el){
     const itemValue = el.dataset.optionValue;
     const itemSwatchImage = el.dataset.itemSwatchImage; 
@@ -8857,6 +8866,9 @@ class PackPicker extends HTMLElement{
     targetEl.style.setProperty('--item-background-image', `url(${itemSwatchImage})`); 
     targetEl.style.setProperty('--item-background-color', itemFallbackColor);
     targetEl.querySelector("[data-selectedItem-label]").innerText = itemValue;
+    if(targetEl.classList.contains('warning')){
+      targetEl.classList.remove("warning");
+    }
     targetEl.classList.add("selected");
 
     if(this.querySelectorAll("[data-selected-item = 'true']").length >= this.itemLimit){
@@ -8869,11 +8881,11 @@ class PackPicker extends HTMLElement{
       const matchedSimpleBundleOptionValue = this.searchStringInArray(matchedSimpleBundleOptionValues, itemValue);
 
       if(matchedSimpleBundleOptionValue){
-        console.log(matchedSimpleBundleOptionValue);
         matchedSimpleBundleOptionSelector.value = matchedSimpleBundleOptionValue;
         matchedSimpleBundleOptionSelector.dispatchEvent(new Event("change"));
       }
     }
+    this.actionWarningEl(false);
   }
 
   clearSingleSelectedItem(el){
@@ -8889,10 +8901,15 @@ class PackPicker extends HTMLElement{
       el.classList.remove("selected");
     }
 
+    if(el.classList.contains('warning')){
+      el.classList.remove('warning');
+    }
+
     if(this.SimpleBundleSelectors.length > 0){
       this.SimpleBundleSelectors[targetIndex].value = "";
       this.SimpleBundleSelectors[targetIndex].dispatchEvent(new Event("change"))
     }
+    this.actionWarningEl(false);
   }
 
 
@@ -8903,6 +8920,7 @@ class PackPicker extends HTMLElement{
   }
 
   init(){
+    // Choose Pack Item
     this.selectors.packItems.forEach((packItem)=>{
       packItem.addEventListener('click', ()=>{
         this.addItem(packItem);
@@ -8922,6 +8940,32 @@ class PackPicker extends HTMLElement{
         }
       })
     })
+
+    // If the pack items don't be selected as much as pack size, prevent add to cart event
+    if(this.selectors.targetForm){
+      let formSubmit = this.selectors.targetForm.querySelector("[type='submit']");
+      if(formSubmit){
+        formSubmit.addEventListener('click', (e)=>{
+          let blankItemsCount = 0;
+          this.selectors.selectedItems.forEach((selItem)=>{
+            let itemSelected = selItem.dataset.selectedItem === 'true'? true: false;
+            if(!itemSelected){
+              selItem.classList.add("warning");
+              blankItemsCount = blankItemsCount + 1;
+            }
+          })
+
+          if(blankItemsCount > 0){
+            e.preventDefault();
+            this.selectors.blankItemsCountEl.innerText = blankItemsCount;
+            this.selectors.warningEl.classList.add("show");
+            return false;
+          }else{
+        
+          }
+        })
+      }
+    }
   }
 
   connectedCallback(){

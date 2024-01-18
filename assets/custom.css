@@ -41,6 +41,11 @@ pack-picker{
     display: none; 
 }
 
+.selectedPackItem.warning .selectedPackItem__icon{
+    box-shadow: 0 0 2px 1px red;
+    color: red;
+}
+
 .selectedPackItem__label{
     display: inline-block; 
     width: 100%; 
@@ -62,6 +67,26 @@ pack-picker{
 
 .clearSelectedPackItem:hover{
     text-decoration: underline;
+}
+
+.pack-item-warning{
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 1px dotted red;
+    color: red;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 0 0;
+    padding: 5px;
+    display: none; 
+}
+
+.pack-item-warning.show{
+    display: inline-block !important;
+}
+
+.pack-item-warning .more-item-count{
+    font-size: 16px; 
+    font-weight: 600;
 }
 
 .bundle-items__wrapper{
