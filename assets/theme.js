@@ -8826,6 +8826,7 @@ class PackPicker extends HTMLElement{
   items = [];
 
   itemLimit = parseInt(this.dataset.itemLimit);
+  parentVariantId = this.dataset.variantId;
 
   selectors = {
     selectedPackPanel: this.querySelector("[data-selected-pack-panel]"), 
@@ -8836,10 +8837,18 @@ class PackPicker extends HTMLElement{
     targetFormId: this.dataset.targetForm
   }
 
+  searchStringInArray(stringArray, searchString) {
+    const normalizedSearchString = searchString.toLowerCase().replace(/\s+/g, '');  
+    const matchingItem = stringArray.find(item => {
+      const normalizedItem = item.toLowerCase().replace(/\s+/g, '');
+      return normalizedItem === normalizedSearchString;
+    });
+  
+    return matchingItem.trim();
+  }
+
   addItem(el){
     const itemValue = el.dataset.optionValue;
-    console.log(itemValue);
-    console.log(this.SimpleBundleWidget);
     const itemSwatchImage = el.dataset.itemSwatchImage; 
     const itemFallbackColor = el.dataset.itemFallbackColor; 
     const targetEl = this.querySelector("[data-selected-item = 'false']");
@@ -8855,8 +8864,15 @@ class PackPicker extends HTMLElement{
     }
 
     if(this.SimpleBundleSelectors.length > 0){
-      this.SimpleBundleSelectors[targetElIndex].value = itemValue;
-      this.SimpleBundleSelectors[targetElIndex].dispatchEvent(new Event("change"))
+      const matchedSimpleBundleOptionSelector = this.SimpleBundleSelectors[targetElIndex];
+      const matchedSimpleBundleOptionValues = SimpleBundles.productVariants[this.parentVariantId].variant_options[targetElIndex].optionValues.split(",");
+      const matchedSimpleBundleOptionValue = this.searchStringInArray(matchedSimpleBundleOptionValues, itemValue);
+
+      if(matchedSimpleBundleOptionValue){
+        console.log(matchedSimpleBundleOptionValue);
+        matchedSimpleBundleOptionSelector.value = matchedSimpleBundleOptionValue;
+        matchedSimpleBundleOptionSelector.dispatchEvent(new Event("change"));
+      }
     }
   }
 

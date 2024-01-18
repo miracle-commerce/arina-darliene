@@ -13,13 +13,6 @@
           "settings": {
           }
         },
-        "simple_bundles_kits_infinite_options_selector_JDDVEx": {
-          "type": "shopify:\/\/apps\/simple-bundles-kits\/blocks\/infinite-options-selector\/e553276b-36b2-446d-b80a-aa47fe5f96ac",
-          "settings": {
-            "select_placeholder": "Please select an option",
-            "disable_oos_options": false
-          }
-        },
         "sales_point": {
           "type": "sales_point",
           "settings": {
@@ -60,7 +53,6 @@
       "block_order": [
         "price",
         "ff1a0e84-3b0f-482d-ab07-5cf5fc285456",
-        "simple_bundles_kits_infinite_options_selector_JDDVEx",
         "sales_point",
         "sales_point3",
         "sales_point4",
