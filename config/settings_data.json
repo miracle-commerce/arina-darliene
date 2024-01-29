@@ -141,7 +141,7 @@
         "disabled": false,
         "settings": {
           "select_placeholder": "Please select an option",
-          "disable_oos_options": false
+          "disable_oos_options": true
         }
       }
     }

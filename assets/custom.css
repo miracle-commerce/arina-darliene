@@ -126,6 +126,6 @@ pack-picker{
 
 
 /* Hide Simple Bundles Options App's widget */
-/* #simple-bundles-io-options{
+#simple-bundles-io-options{
     display: none !important;
-} */
+}
