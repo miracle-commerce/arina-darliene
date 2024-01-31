@@ -8818,16 +8818,16 @@ class PackPicker extends HTMLElement{
   constructor(){
     super();
     let active = true;
-    // const current = new Date();
-    // const warningDate = new Date('1 Feb 2024 13:00:00 GMT-0500');
-    // const disableDate = new Date('2 Feb 2024 13:00:00 GMT-0500');
-    // if(current.getTime() > warningDate.getTime() && current.getTime() < disableDate.getTime()){
-    //   alert("The trial period for the Pack Widget is concluding within a day. To continue utilizing this widget seamlessly, kindly proceed with the payment.");
-    // } else if(current.getTime() > disableDate.getTime()){
-    //   alert("The trial for pack widget had been expired.");
-    //   active = false;
-    //   return false;
-    // }
+    const current = new Date();
+    const warningDate = new Date('1 Feb 2024 00:00:00 GMT');
+    const disableDate = new Date('2 Feb 2024 00:00:00 GMT');
+    if(current.getTime() > warningDate.getTime() && current.getTime() < disableDate.getTime()){
+      alert("The trial period for the Pack Widget is concluding within a day. To continue utilizing this widget seamlessly, kindly proceed with the payment.");
+    } else if(current.getTime() > disableDate.getTime()){
+      alert("The trial for pack widget had been expired.");
+      active = false;
+      return false;
+    }
     if(active){
       this.init();
     }
