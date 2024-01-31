@@ -1,6 +1,7 @@
 {%- liquid 
   assign pack_size = product.metafields.custom.pack_size
   assign pack_swatch_images = product.metafields.custom.pack_item_color_swatch_images.value
+  assign item_size_value = product.metafields.custom.pack_item_size | handle
 -%}
 <pack-picker data-item-limit="{{pack_size}}" data-pack-name="{{- product.title -}}" data-target-form="{{form_id}}" data-variant-id="{{product.selected_or_first_available_variant.id}}">
   <div class="selected_pack_panel" data-selected-pack-panel>
@@ -23,17 +24,46 @@
         {%- liquid
           assign item_swatch_value = pack_item_swatch.product_and_color_name | split: '-' | last | strip
           assign item_swatch_image = pack_item_swatch.swatch_image
+          assign item_product = all_products[pack_item_swatch.item_product]
+          assign item_variant = pack_item_swatch.pack_item_variant.value
+          if item_variant
+            assign matched_pack_variant = item_variant
+            assign matched_pack_variant_inventory = matched_pack_variant.inventory_quantity
+          else
+            if item_product.has_only_default_variant
+              assign matched_pack_variant = item_product.first_available_variant
+              assign matched_pack_variant_inventory = matched_pack_variant.inventory_quantity
+            else
+              assign product_size_option = item_product.options_by_name['size'].position | default: item_product.options_by_name['Size'].position
+              assign v_sop_handle = 'option' | append: product_size_option
+              for item_variant in item_product.variants
+                assign v_size_value = item_variant[v_sop_handle] | handle
+                if v_size_value contains item_size_value
+                  assign matched_pack_variant = item_variant 
+                  assign matched_pack_variant_inventory = matched_pack_variant.inventory_quantity
+                  break;
+                endif 
+              endfor
+            endif
+          endif 
         -%}
-
-        <span 
-          class="bundle-item" 
-          title="{{item_swatch_value}}" 
-          style="background-image: url('{{item_swatch_image | image_url: width: 50}}'); background-color: {{- item_option_value | handle -}}"
-          data-item-id="{{bundle_item.id}}"
-          data-option-value="{{- item_swatch_value -}}"
-          data-item-swatch-image = "{{item_swatch_image | image_url: width: 50}}"
-          data-item-fallback-color = "{{- item_swatch_value | handle -}}"
-          data-bundle-item></span>
+        
+        {%- unless matched_pack_variant == '' -%}
+          <button 
+            class="bundle-item" 
+            title="{{item_swatch_value}}" 
+            style="background-image: url('{{item_swatch_image | image_url: width: 50}}'); background-color: {{- item_option_value | handle -}}"
+            data-option-value="{{- item_swatch_value -}}"
+            data-item-id="{{- matched_pack_variant.id -}}"
+            data-item-title="{{- item_product.title | append: '-' | append: matched_pack_variant.title -}}"
+            data-item-swatch-image = "{{item_swatch_image | image_url: width: 50}}"
+            data-item-fallback-color = "{{- item_swatch_value | handle -}}"
+            data-item-inventory = "{{- matched_pack_variant_inventory -}}"
+            data-bundle-item
+            {% if matched_pack_variant_inventory == 0 %}
+              disabled
+            {% endif %}></button>
+        {%- endunless -%}
       {%- endfor -%}
     </div>
   </div>

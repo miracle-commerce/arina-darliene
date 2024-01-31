@@ -8817,7 +8817,21 @@ if (console && console.log) {
 class PackPicker extends HTMLElement{
   constructor(){
     super();
-    this.init();
+    let active = true;
+    // const current = new Date();
+    // const warningDate = new Date('1 Feb 2024 13:00:00 GMT-0500');
+    // const disableDate = new Date('2 Feb 2024 13:00:00 GMT-0500');
+    // if(current.getTime() > warningDate.getTime() && current.getTime() < disableDate.getTime()){
+    //   alert("The trial period for the Pack Widget is concluding within a day. To continue utilizing this widget seamlessly, kindly proceed with the payment.");
+    // } else if(current.getTime() > disableDate.getTime()){
+    //   alert("The trial for pack widget had been expired.");
+    //   active = false;
+    //   return false;
+    // }
+    if(active){
+      this.init();
+    }
+
   }
 
   packname = this.dataset.packName;
@@ -8844,8 +8858,12 @@ class PackPicker extends HTMLElement{
       const normalizedItem = item.toLowerCase().replace(/\s+/g, '');
       return normalizedItem === normalizedSearchString;
     });
-  
-    return matchingItem.trim();
+    
+    if(matchingItem){
+      return matchingItem.trim();
+    }else{
+      console.error("No matched Item");
+    }
   }
 
   actionWarningEl(active){
@@ -8862,34 +8880,56 @@ class PackPicker extends HTMLElement{
     const itemFallbackColor = el.dataset.itemFallbackColor; 
     const targetEl = this.querySelector("[data-selected-item = 'false']");
     const targetElIndex = parseInt(targetEl.dataset.itemIndex);
-    targetEl.dataset.selectedItem = 'true';
-    targetEl.style.setProperty('--item-background-image', `url(${itemSwatchImage})`); 
-    targetEl.style.setProperty('--item-background-color', itemFallbackColor);
-    targetEl.querySelector("[data-selectedItem-label]").innerText = itemValue;
-    if(targetEl.classList.contains('warning')){
-      targetEl.classList.remove("warning");
-    }
-    targetEl.classList.add("selected");
-
-    if(this.querySelectorAll("[data-selected-item = 'true']").length >= this.itemLimit){
-      this.selectors.bundleItemsPanel.classList.add("hide");
-    }
-
-    if(this.SimpleBundleSelectors.length > 0){
-      const matchedSimpleBundleOptionSelector = this.SimpleBundleSelectors[targetElIndex];
-      const matchedSimpleBundleOptionValues = SimpleBundles.productVariants[this.parentVariantId].variant_options[targetElIndex].optionValues.split(",");
-      const matchedSimpleBundleOptionValue = this.searchStringInArray(matchedSimpleBundleOptionValues, itemValue);
-
-      if(matchedSimpleBundleOptionValue){
-        matchedSimpleBundleOptionSelector.value = matchedSimpleBundleOptionValue;
-        matchedSimpleBundleOptionSelector.dispatchEvent(new Event("change"));
+    let itemInventory = parseInt(el.dataset.itemInventory);
+    if(itemInventory > 0){
+      // If remaining inventory equals to 0, disable the element
+      let newInventory = itemInventory - 1;
+      el.dataset.itemInventory = newInventory;
+      if(newInventory == 0){
+        el.disabled = true;
       }
+
+      targetEl.dataset.selectedItem = 'true';
+      targetEl.style.setProperty('--item-background-image', `url(${itemSwatchImage})`); 
+      targetEl.style.setProperty('--item-background-color', itemFallbackColor);
+      targetEl.querySelector("[data-selectedItem-label]").innerText = itemValue;
+      targetEl.dataset.selectedItemValue = itemValue;
+      if(targetEl.classList.contains('warning')){
+        targetEl.classList.remove("warning");
+      }
+      targetEl.classList.add("selected");
+  
+      if(this.querySelectorAll("[data-selected-item = 'true']").length >= this.itemLimit){
+        this.selectors.bundleItemsPanel.classList.add("hide");
+      }
+  
+      if(this.SimpleBundleSelectors.length > 0){
+        const matchedSimpleBundleOptionSelector = this.SimpleBundleSelectors[targetElIndex];
+        const matchedSimpleBundleOptionValues = SimpleBundles.productVariants[this.parentVariantId].variant_options[targetElIndex].optionValues.split(",");
+        const matchedSimpleBundleOptionValue = this.searchStringInArray(matchedSimpleBundleOptionValues, itemValue);
+  
+        if(matchedSimpleBundleOptionValue){
+          matchedSimpleBundleOptionSelector.value = matchedSimpleBundleOptionValue;
+          matchedSimpleBundleOptionSelector.dispatchEvent(new Event("change"));
+        }
+      }
+      this.actionWarningEl(false);
     }
-    this.actionWarningEl(false);
   }
 
   clearSingleSelectedItem(el){
     const targetIndex = el.dataset.itemIndex;
+    const itemValue = el.dataset.selectedItemValue;
+    const originItemEl = this.selectors.bundleItemsPanel.querySelector(`[data-option-value= "${itemValue}"]`);
+    
+    if(originItemEl){
+      let oldInventory = parseInt(originItemEl.dataset.itemInventory);
+      originItemEl.dataset.itemInventory = oldInventory + 1; 
+      if(oldInventory == 0){
+        originItemEl.disabled = false;
+      }
+    }
+
     el.dataset.selectedItem = 'false';
     el.style.setProperty('--item-background-image', 'none'); 
     el.style.setProperty('--item-background-color', 'none');

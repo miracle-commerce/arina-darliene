@@ -124,6 +124,11 @@ pack-picker{
     display: inline-block;
 }
 
+.bundle-item[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5; 
+}
+
 
 /* Hide Simple Bundles Options App's widget */
 #simple-bundles-io-options{
